@@ -948,6 +948,7 @@ def sample(log_prob_func, params_init, num_samples=10, num_steps_per_sample=10, 
         #Assum G is diag here so 1/Mass = G inverse
         elif len(inv_mass.shape) == 2:
             mass = torch.inverse(inv_mass)
+            mass = (mass + mass.T) / 2
         elif len(inv_mass.shape) == 1:
             mass = 1/inv_mass
 
